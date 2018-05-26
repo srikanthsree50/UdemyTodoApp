@@ -10,6 +10,6 @@ if(err)
   return  console.log('unable to connect mongo server...');
 }
 console.log(' connection to mongo server Successfull.....');
-client.collection('Todos').insertOne({text:'hell',completed:'false'});
+client.collection('Todos').insertOne({text:'text3',completed:'false'});
 client.close();
 });

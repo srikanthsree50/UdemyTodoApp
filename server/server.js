@@ -10,9 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/todos',(req,res) => {
-var todo = new Todo({
-    text:req.body.text
-});
+var todo = new Todo({ text:req.body.text });
 todo.save().then((doc) => {
 res.status(200).send(doc);
 },(err) => {

@@ -21,3 +21,6 @@ res.status(200).send(doc);
 app.listen(port,() => {
     console.log(`server running at ${port}`);
 })
+
+
+module.exports = {app};

@@ -1,6 +1,7 @@
+require('./config/config');
 const express = require('express');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 const {ObjectId} = require('mongodb');
 const _ = require('lodash');
 

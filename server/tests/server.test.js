@@ -9,7 +9,10 @@ const todos = [{
     _id: new ObjectId(), 
     text:'first text todo'},{
         _id: new ObjectId(), 
-    text:'second text todo'},{
+    text:'second text todo',
+    completed:true,
+    completedAt:333
+},{
         _id: new ObjectId(), 
     text:'third text todo'
 }];
@@ -152,5 +155,46 @@ expect(res.body.todo._id).toBe(hexId);
         .end(done);
     });
 
+});
+
+describe('PATCH / todos/:id ', () => {
+    it('should update a todo',(done) => {
+var hexId = todos[0]._id.toHexString();
+var text = 'this is new updated text';
+
+    request(app)
+    .patch(`/todos/${hexId}`)
+    .send({
+        completed:true,
+        text //es6 standards of text:text
+    })
+    .expect(200)
+    .expect((res) => {
+        expect(res.body.todo.text).toBe(text);
+        expect(res.body.todo.completed).toBe(true);
+        expect(res.body.todo.completedAt).toBeA('number');
+                })
+    .end(done);
+    });
+
+    it('should clear completedAt field if todo is not completed ',(done) => {
+
+        var hexId = todos[1]._id.toHexString();
+        var text = 'this is new updated text not completed';
+        
+            request(app)
+            .patch(`/todos/${hexId}`)
+            .send({
+                completed:false,
+                text //es6 standards of text:text
+            })
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.todo.text).toBe(text);
+                expect(res.body.todo.completed).toBe(false);
+                expect(res.body.todo.completedAt).toNotExist();
+                        })
+            .end(done);
+    });
 });
 

@@ -19,11 +19,32 @@ var id = '5b0fcaa11c3bf90758b2ff39';
 // });
 
 
-Todo.findById(id).then((todo) => {
-    if(!todo){
-        console.log('Id Not found');  
-    }
-   return console.log('Todo By Id ',todo);
-}).catch((e) =>  console.log(e) );
+// Todo.findById(id).then((todo) => {
+//     if(!todo){
+//         console.log('Id Not found');  
+//     }
+//    return console.log('Todo By Id ',todo);
+// }).catch((e) =>  console.log(e) );
+
+
+//DELETING DOCUMENTS .....
+
+
+// Todo.remove({}).then((todos) => {
+//     console.log('Todos ',todos);
+// });
+
+// Todo.findOneAndRemove({_id : id}).then((todo) => {
+
+// });
+
+
+// Todo.findByIdAndRemove(id).then((todo) => {
+//     if(!todo){
+//         console.log('Id Not found');  
+//     }
+//    return console.log('Todo By Id deleted',todo);
+// }).catch((e) =>  console.log(e) );
+
 
 

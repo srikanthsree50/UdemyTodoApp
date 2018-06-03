@@ -55,9 +55,27 @@ UserSchema.methods.generateAuthToken = function(){
   //user.tokens.push({access,token}); // compatibility issues 
 user.tokens = user.tokens.concat([{access,token}]);
 
-user.save().then(() => {
+return user.save().then(() => {
   return token;
 });
+};
+
+UserSchema.statics.findByToken = function (token) {
+var User = this;
+  var decode;
+try{
+decode = jwt.verify(token,'abc123');
+ }catch(e){
+// return new Promise((resolve,reject) => {
+//   reject();
+//});
+
+}
+return User.findOne({
+  '_id':decode._id,
+  'tokens.token':token,
+  'tokens.access':'auth'
+})
 };
 
 var User = mongoose.model('User',UserSchema);

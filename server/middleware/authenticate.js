@@ -13,7 +13,7 @@ var {User} = require('./../models/user');
      next();
         }).catch((e) => {
             res.status(401).send();
-        })
+        });
     };
 
     module.exports = {authenticate};

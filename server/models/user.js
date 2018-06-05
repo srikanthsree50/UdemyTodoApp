@@ -46,7 +46,7 @@ UserSchema.methods.toJSON = function(){
   var userObject = user.toObject();
 
   return _.pick(userObject,['_id','email']);
-}
+};
 
 UserSchema.methods.generateAuthToken = function(){
   var user = this;
@@ -71,13 +71,13 @@ decode = jwt.verify(token,'abc123');
 // return new Promise((resolve,reject) => {
 //   reject();
 //});
-
+return Promise.reject();
 }
 return User.findOne({
   '_id':decode._id,
   'tokens.token':token,
   'tokens.access':'auth'
-})
+});
 };
 
 UserSchema.pre('save',function(next){
@@ -87,8 +87,8 @@ bcrypt.genSalt(10,(err,salt) => {
   bcrypt.hash(user.password,salt, (err,hash) => {
 user.password = hash;
 next();
-  })
-})
+  });
+});
 }
 else{
   next();

@@ -12,10 +12,12 @@ var UserSchema = new mongoose.Schema({
     minlength: 1,
     unique: true,
     validate: {
-      validator: validator.isEmail,
+      validator:(value) => {
+      return validator.isEmail(value);
+      },
       message: '{VALUE} is not a valid email'
-    }
-  },
+  }
+},
   password: {
     type: String,
     require: true,
